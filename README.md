@@ -13,6 +13,10 @@
 
 React boilerplate with authorization (redux-form validation) and persistent login.
 
+<p align="center">
+  <img src="./demo.gif" width="600"/>
+</p>
+
 ### Installation
 - <b>Web App</b>
 
