@@ -11,11 +11,42 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "immutable": "^3.8.1",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-bootstrap": "^0.30.6",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
+    "redux": "^3.6.0",
+    "redux-form": "^6.2.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "airbnb",
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "linebreak-style": "off",
+      "new-cap": "off"
+    },
+    "globals": {
+      "fetch": true,
+      "it": true,
+      "expect": true,
+      "jest": true,
+      "alert": true,
+      "document": true
+    }
   },
   "scripts": {
     "start": "react-scripts start",
