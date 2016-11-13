@@ -5,6 +5,8 @@ import { browserHistory } from 'react-router';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 // actions
 import { login, fetchUser } from '../../containers/authentication/actions';
+// style
+import './LoginForm.css';
 
 const propTypes = {
   handleSubmit: PropTypes.func,
