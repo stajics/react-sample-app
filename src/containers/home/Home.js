@@ -36,8 +36,8 @@ export class Home extends Component {
           onClick={this.onChangeTitle}
         >Change Title</Button>
         <Button
-          onClick={() => { browserHistory.push('/'); }}
-        >SETTINGS</Button>
+          onClick={() => { browserHistory.push('/profile'); }}
+        >Profile</Button>
       </div>
     );
   }

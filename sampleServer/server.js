@@ -8,6 +8,7 @@ const middlewares = jsonServer.defaults();
 /* eslint no-console: "off" */
 
 server.use(bodyParser.json());
+server.use(middlewares);
 // delay middleware
 server.use((req, res, next) => {
   setTimeout(() => { next(); }, 1000);
@@ -31,8 +32,6 @@ server.use((req, res, next) => {
   res.status(401);
   return res.json({ error: 'Unauthorized.' });
 });
-
-server.use(middlewares);
 server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');

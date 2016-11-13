@@ -45,7 +45,8 @@
       "expect": true,
       "jest": true,
       "alert": true,
-      "document": true
+      "document": true,
+      "localStorage": true
     }
   },
   "scripts": {

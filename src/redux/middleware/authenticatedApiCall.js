@@ -1,13 +1,13 @@
-import { AsyncStorage } from 'react-native';
 import { apiEndpoint } from '../../urls';
 
 export const AUTH_API_CALL = 'Authenticated API Call';
 
 async function authenticatedApiCall(method, path, body, contentType = 'application/json') {
-  const token = await AsyncStorage.getItem('authToken') || null;
+  const token = localStorage.getItem('authToken') || null;
   if (!token) {
     throw new Error('No authentication token saved!');
   }
+  console.log(apiEndpoint + path);
   const response = await fetch(apiEndpoint + path, {
     method,
     headers: {
@@ -36,6 +36,6 @@ export default store => next => (action) => {
   return authenticatedApiCall(method, path, body, contentType)
     .then(
       response => next({ type: successType, payload: response }),
-      error => next({ type: errorType, payload: error, error: true })
+      error => next({ type: errorType, payload: error, error: true }),
     );
 };

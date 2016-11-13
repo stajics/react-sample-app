@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
+import { browserHistory } from 'react-router';
 // components
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 // actions
-// import { login, fetchUser } from '../../containers/authentication/actions';
+import { login, fetchUser } from '../../containers/authentication/actions';
 
 const propTypes = {
   handleSubmit: PropTypes.func,
@@ -36,43 +37,39 @@ const renderTextField = ({ input, name, meta }) => // eslint-disable-line
 
 const submit = async (values, dispatch) => { // eslint-disable-line no-unused-vars, consistent-return, max-len
   try {
-    // const response = await login(values.username, values.password)(dispatch);
-    // if (response.error) throw response.payload.error;
-    // await AsyncStorage.setItem('authToken', response.payload.token);
-    // await fetchUser(response.payload.token)(dispatch);
-    // Actions.rootTabbar();
+    const response = await login(values.username, values.password)(dispatch);
+    if (response.error) throw response.payload.error;
+    localStorage.setItem('authToken', response.payload.token);
+    await fetchUser(response.payload.token)(dispatch);
+    browserHistory.replace('/');
   } catch (err) {
     // Handle error
     throw new SubmissionError({ _error: err });
   }
 };
 
-export class LoginForm extends Component {
-  render() {
-    const { handleSubmit, submitting, submitFailed, error } = this.props;
-    return (
-      <form>
-        <Field
-          name="username"
-          component={renderTextField}
-        />
-        <Field
-          name="password"
-          component={renderTextField}
-        />
-        <Button
-          type="submit"
-          disabled={submitting}
-          onClick={handleSubmit(submit)}
-        >LOGIN</Button>
-        {
-          submitFailed && error ? <p>BAD CREDENTIALS</p>
-          : null
-        }
-      </form>
-    );
-  }
-}
+export const LoginForm = ({ handleSubmit, submitting, submitFailed, error }) => (
+  <form>
+    <Field
+      name="username"
+      component={renderTextField}
+    />
+    <Field
+      name="password"
+      component={renderTextField}
+    />
+    <Button
+      type="submit"
+      disabled={submitting}
+      onClick={handleSubmit(submit)}
+    >LOGIN</Button>
+    {
+      submitFailed && error ? <p>BAD CREDENTIALS</p>
+      : null
+    }
+  </form>
+);
+
 LoginForm.propTypes = propTypes;
 
 const validate = (values, props) => {  // eslint-disable-line no-unused-vars

@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import { apiEndpoint } from '../../urls';
 
 export const API_CALL = 'API Call';
@@ -31,6 +30,6 @@ export default store => next => (action) => {
   return apiCall(method, path, body, contentType)
     .then(
       response => next({ type: successType, payload: response }),
-      error => next({ type: errorType, payload: error, error: true })
+      error => next({ type: errorType, payload: error, error: true }),
     );
 };
